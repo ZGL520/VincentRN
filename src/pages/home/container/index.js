@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import {View,Text} from 'react-native'
 import {bindActionCreators} from 'redux'
-import getRequest from "../../../common/axios/index";
+import {Goods} from '../../../common/axios/index'
 
 
 
@@ -13,13 +13,13 @@ class HomePage extends Component{
         }
     }
     componentWillMount(){
-        getRequest('goods').then(res => {
+        Goods.get('').then(res => {
             alert('success');
             this.setState({
                 data:res.data.data
-            })
+            });
         }).catch(error => {
-            alert('fff')
+            alert(error)
         })
     }
     render(){
