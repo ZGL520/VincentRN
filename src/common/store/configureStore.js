@@ -9,10 +9,7 @@ function configureStore() {
     const store = createStore(rootReducer, {}, composeEnhancers(
         applyMiddleware(ReduxThunk)
     ));
-
     return store;
-
-
 }
 
 export default configureStore
