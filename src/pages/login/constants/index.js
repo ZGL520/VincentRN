@@ -1,0 +1,9 @@
+export const USERNAME = 'USERNAME';
+export const USEREMAIL = 'USEREMAIL';
+export const USERPASSWORD = 'USERPASSWORD';
+export const USERPASSWORDCOMFIRM = 'USERPASSWORDCOMFIRM';
+export const UNLOGIN = 'UNLOGIN';
+export const LOGINING = 'LOGINING';
+export const LOGINFAILD = 'LOGINFAILD';
+export const LOGINED = 'LOGINED';
+export const USERDETAIL = 'USERDETAIL';

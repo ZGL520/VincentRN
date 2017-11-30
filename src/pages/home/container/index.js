@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import {View,Text} from 'react-native'
+import {View,Text,Alert} from 'react-native'
 import {bindActionCreators} from 'redux'
 import {Goods} from '../../../common/axios/index'
 
@@ -14,7 +14,7 @@ class HomePage extends Component{
     }
     componentWillMount(){
         Goods.get('').then(res => {
-            alert('success');
+            // alert('success');
             this.setState({
                 data:res.data.data
             });
