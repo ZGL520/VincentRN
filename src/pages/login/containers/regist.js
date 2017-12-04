@@ -1,45 +1,52 @@
+// 'use strict';
+
 import React,{Component} from 'react';
-import {View,Text} from 'react-native'
-import {connect} from "react-redux";
-import {bindActionCreators} from "redux";
+import {View,Text} from 'react-native';
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
 
-
-import useraction from "../actions";
-import {AuthLogin} from "../../../common/axios";
+import useraction from '../actions';
 import Button from '../../../common/components/button'
 import Input from '../../../common/components/input'
-import {AuthDetails} from "../../../common/axios/index";
+import {AuthSignUp} from "../../../common/axios/index";
 
-class Login extends Component {
 
+
+
+//登陆输入组件
+class Regist extends Component{
     constructor(props){
         super(props);
         this.state = {
         };
     }
 
-    login = () => {
+    regist = () => {
         const data = {
+            username:this.props.userinfo.username,
             email:this.props.userinfo.useremail,
-            password:this.props.userinfo.userpassword
+            password:this.props.userinfo.userpassword,
+            password_confirmation:this.props.userinfo.userpasswordcomfirm,
         };
-        AuthLogin.post(data).then(res => {
-            console.log(res.data);
-            this.props.userinfoactin.UserDetail(res.data);
-            this.props.userinfoactin.Logined();
-            // AuthDetails.get().then(res => {
-            //     console.log(res.data);
-            // }).catch(error => {
-            //     console.log(error)
-            // })
-        }).then(error => {
-            console.log(error);
+
+        AuthSignUp.post(data).then(res => {
+            console.log(res.data)
+        }).catch(error => {
+            console.log(error)
         });
+
     };
 
     render(){
         return(
             <View>
+                <Text>
+                    Regist
+                </Text>
+                <View style={styles.inputview}>
+                    <Text style={styles.btnview}>username:</Text>
+                    <Input action={this.props.userinfoactin.LoginUsername} autoCapitalize='none' style={styles.input} secure={false} name='username' placeholder='username' clearButtonMode='while-editing'/>
+                </View>
                 <View style={styles.inputview}>
                     <Text style={styles.btnview}>email:</Text>
                     <Input action={this.props.userinfoactin.LoginUseremail} autoCapitalize='none' style={styles.input} secure={false} name='email' placeholder='email' clearButtonMode='while-editing'/>
@@ -48,12 +55,16 @@ class Login extends Component {
                     <Text style={styles.btnview}>password:</Text>
                     <Input action={this.props.userinfoactin.LoginUserpassword} autoCapitalize='none' style={styles.input} secure={true} name='password' placeholder='password' clearButtonMode='while-editing' secureTextEntry={true}/>
                 </View>
+                <View style={styles.inputview}>
+                    <Text style={styles.btnview}>passwordcfm:</Text>
+                    <Input action={this.props.userinfoactin.LoginUserpasswordcomfirm} autoCapitalize='none' style={styles.input} secure={true} name='passwordcomfirm' placeholder='password-comfirm' clearButtonMode='while-editing' secureTextEntry={true}/>
+                </View>
                 <View style={styles.btnviews}>
                     <Button
-                        onPress = {this.login}
-                        placeholder = {'登录'}
+                        onPress = {this.regist}
                         style={styles.button}
                         textStyle={styles.fontstyle}
+                        placeholder={'注册'}
                     />
                 </View>
             </View>
@@ -61,8 +72,7 @@ class Login extends Component {
     }
 }
 
-
-//LogIn样式
+//regist样式
 const styles = {
     inputview:{
         flexDirection:'row',
@@ -98,6 +108,7 @@ const styles = {
     }
 };
 
+
 const mapStateToProps = state => {
     return {
         userinfo:state.LoginInfoReducer,
@@ -109,4 +120,4 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(Login)
+export default connect(mapStateToProps,mapDispatchToProps)(Regist)

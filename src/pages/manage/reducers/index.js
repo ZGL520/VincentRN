@@ -1,10 +1,9 @@
-import {TEST} from "../constants";
+
+
 import {GETUSERINFO} from "../constants/index";
 
-const TestReducer =  (state={test:'',userinfo:{}}, action) => {
+const GetUserinfoReducer =  (state={userinfo:{}}, action) => {
     switch (action.type) {
-        case TEST:
-            return {...state,test:action.data};
         case GETUSERINFO:
             return {...state,userinfo:action.data};
         default:
@@ -12,4 +11,4 @@ const TestReducer =  (state={test:'',userinfo:{}}, action) => {
     }
 };
 
-export default TestReducer;
+export default GetUserinfoReducer;

@@ -6,6 +6,8 @@ import HomePage from "../../pages/home/container/index";
 import Goods from "../../pages/goods/container/index";
 import Manage from "../../pages/manage/container/index";
 
+
+
 const HomeNav = TabNavigator({
     Home:{
         screen:HomePage,

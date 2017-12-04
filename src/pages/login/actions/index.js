@@ -46,10 +46,10 @@ const LoginFiald = data => {
         data:data
     }
 };
-const Logined = data => {
+const Logined = () => {
     return {
         type:LOGINED,
-        data:data
+        data:'logined'
     }
 };
 const UserDetail = data => {

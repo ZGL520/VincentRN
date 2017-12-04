@@ -9,7 +9,7 @@ const init_state = {
     useremail:'',
     userpassword:'',
     userpasswordcomfirm:'',
-    loginstute:'',
+    loginstute:'unlogin',
     userdetail:{},
 };
 

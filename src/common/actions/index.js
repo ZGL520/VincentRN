@@ -1,3 +1,5 @@
+import {connect} from 'redux'
+
 import {TEST} from "../constants";
 
 const TestAction = (data) => {
@@ -7,4 +9,11 @@ const TestAction = (data) => {
     }
 };
 
-export default TestAction
+
+const mapStateToProps = state => {
+    return {
+        userinfo:state.LoginInfoReducer,
+    }
+};
+
+export default {TestAction}
