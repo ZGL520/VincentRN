@@ -1,5 +1,7 @@
 // "use strict";
 
+import axios from 'axios'
+
 import Request from './class'
 
 // Auth
@@ -33,6 +35,10 @@ const OrderGetOrder = new Request('http://lv55api.brolgatech.com/api/v1/','order
 // Wechat User
 const WechatUsers = new Request('http://lv55api.brolgatech.com/api/v1/','wechat/users');
 const WechatUsersRemark = new Request('http://lv55api.brolgatech.com/api/v1/','wechat/users/remark/');
+
+
+
+
 
 export {
     AuthSignUp,

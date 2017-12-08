@@ -5,6 +5,7 @@ import {bindActionCreators} from "redux";
 
 
 import useraction from "../actions";
+import getuserinfo from "../../manage/actions"
 import {AuthLogin} from "../../../common/axios";
 import Button from '../../../common/components/button'
 import Input from '../../../common/components/input'
@@ -19,23 +20,35 @@ class Login extends Component {
     }
 
     login = () => {
+        //数据拼接
         const data = {
             email:this.props.userinfo.useremail,
             password:this.props.userinfo.userpassword
         };
+        //请求登陆
         AuthLogin.post(data).then(res => {
             console.log(res.data);
             this.props.userinfoactin.UserDetail(res.data);
             this.props.userinfoactin.Logined();
-            // AuthDetails.get().then(res => {
-            //     console.log(res.data);
-            // }).catch(error => {
-            //     console.log(error)
-            // })
-        }).then(error => {
-            console.log(error);
+            storage.save({
+                key:'token',
+                data:res.data.access_token,
+                expires:1000*3600*24,
+            });
+            storage.load({
+                key:'token',
+            }).then(token => {
+                AuthDetails.get(token).then(rest => {
+                    this.props.getuserinfo.GetUserinfo(rest.data);
+                }).catch(error => {
+                    console.log(error)
+                })
+            });
+        }).catch(error => {
+            alert('登录失败');
         });
     };
+
 
     render(){
         return(
@@ -105,7 +118,8 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
     return {
-        userinfoactin:bindActionCreators(useraction,dispatch)
+        userinfoactin:bindActionCreators(useraction,dispatch),
+        getuserinfo:bindActionCreators(getuserinfo,dispatch),
     }
 };
 

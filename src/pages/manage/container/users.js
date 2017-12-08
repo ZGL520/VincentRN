@@ -4,6 +4,12 @@ import {View,Text} from 'react-native'
 
 
 class User extends Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            userdata:{}
+        }
+    }
     render(){
         return(
             <View>

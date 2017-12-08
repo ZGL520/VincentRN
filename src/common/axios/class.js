@@ -1,27 +1,39 @@
 import axios from 'axios'
 
 class Request {
-    constructor(baseurl,url,token){
+    constructor(baseurl,url){
         this.baseurl = baseurl;
         this.url = url;
         this.request = axios;
-        this.token = token
     }
 
-    // gettoken(){
-    //     const tokens = '';
-    //     return tokens;
-    // }
 
-    get(id){
+    get(token){
         let headers={};
-        // const token = this.gettoken();
-        if (this.token) {
+
+        if (token) {
             headers = {
-                'Authorization':'Bearer'+this.token,
+                'Authorization': 'Bearer ' + token
             }
         }
-        const urls = this.baseurl + this.url + id;
+        const urls = this.baseurl + this.url;
+        console.log(urls);
+        result = axios({
+            method:'get',
+            url:urls,
+            headers:headers
+        });
+        return result;
+    };
+    getId(id,token){
+        let headers={};
+
+        if (token) {
+            headers = {
+                'Authorization':'Bearer'+token,
+            }
+        }
+        const urls = this.baseurl + this.url+id;
         const result = this.request({
             method:'get',
             url:urls,
@@ -30,12 +42,11 @@ class Request {
         return result;
     };
 
-    post(obj){
+    post(obj,token){
         let headers={};
-        // const token = this.gettoken();
-        if(this.token){
+        if(token){
             headers = {
-                'Authorization': 'Bearer ' + this.token
+                'Authorization': 'Bearer ' + token
             }
         }
         const urls = this.baseurl + this.url;
@@ -48,12 +59,11 @@ class Request {
         return result;
     };
 
-    put(data) {
+    put(data,token) {
         let headers = {};
-        // const token = this.gettoken();
-        if(this.token){
+        if(token){
             headers = {
-                'Authorization': 'Bearer ' + this.token
+                'Authorization': 'Bearer ' + token
             }
         }
         const urls = this.baseurl + this.url;
@@ -66,12 +76,11 @@ class Request {
         return result;
     };
 
-    delete (data) {
+    delete (data,token) {
         let headers = {};
-        // const token = this.gettoken();
-        if(this.token){
+        if(token){
             headers = {
-                'Authorization': 'Bearer ' + this.token
+                'Authorization': 'Bearer ' + token
             }
         }
         const urls = this.baseurl + this.url;
