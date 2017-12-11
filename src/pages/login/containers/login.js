@@ -49,8 +49,8 @@ class Login extends Component {
         });
     };
 
-
     render(){
+        const {navigate} = this.props.navigation;
         return(
             <View>
                 <View style={styles.inputview}>
@@ -68,6 +68,12 @@ class Login extends Component {
                         style={styles.button}
                         textStyle={styles.fontstyle}
                     />
+                </View>
+                <View>
+                    <Text>没有账号？</Text>
+                    <Text
+                        onPress = {() => navigate('Reg')}
+                    >注册</Text>
                 </View>
             </View>
         )

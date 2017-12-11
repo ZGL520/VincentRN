@@ -9,44 +9,30 @@ import Login from "../../pages/login/containers/login";
 import LogIn from '../../pages/login/containers/index';
 import Regist from '../../pages/login/containers/regist';
 
-const LoginorRegist = StackNavigator({
-   Login:{
-       screen:Login,
-       navigationOptions:{
-           header:null,
-       }
-   },
-    Regist:{
-       screen:Regist
-    }
-});
-
+//个人中心导航
 const Logins = StackNavigator({
     Manages: {
         screen: Manage ,
         navigationOptions:{
             title:'个人中心',
+            headerBackTitle:'个人中心',
         },
     },
     Chats: {
-        screen: LoginorRegist,
-        // tabBarPosition:'top',
+        screen: Login,
         navigationOptions:{
-            title:'登陆',
+            // title:'登陆',
         }
     },
-});
-
-
-
-const Userinfo = StackNavigator({
-    Userinfo:{
-        screen:Manage,
+    Reg:{
+        screen:Regist,
+        navigationOptions:{
+            title:'注册',
+        }
     }
 });
 
-
-
+//底部导航
 const HomeNav = TabNavigator({
     Home:{
         screen:HomePage,
@@ -85,7 +71,7 @@ const HomeNav = TabNavigator({
                     style={{color:tintColor}}
                 />
             )
-        }
+        },
     }
 });
 

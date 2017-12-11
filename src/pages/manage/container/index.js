@@ -1,10 +1,12 @@
 import React,{Component} from 'react'
 import {View,Text,Image} from 'react-native'
 import {connect} from 'react-redux'
+import {StackNavigator} from 'react-navigation'
 
 
 
 import Button from "../../../common/components/button";
+import Login from '../../login/containers/login'
 
 
 class Manage extends Component{
@@ -15,14 +17,21 @@ class Manage extends Component{
         }
     }
 
+
+
+
     componentWillMount(){
         this.setState({
             loginstatus:this.props.loginstatu,
         });
-
-            console.log(this.props.navigation+'asfd')
-
+        console.log(this.props.navigate)
     }
+
+    //  logoinnav = StackNavigator({
+    //     Logi:{
+    //         screen:Login,
+    //     }
+    // });
 
     render(){
         const { navigate } = this.props.navigation;
@@ -41,6 +50,12 @@ class Manage extends Component{
                         立即登陆
                     </Text>
                 </View>
+                {/*<View style={{margin:20}}>*/}
+                    {/*<Button*/}
+                         {/**/}
+                    {/*/>*/}
+                {/*</View>*/}
+
             </View>
         )
     }
